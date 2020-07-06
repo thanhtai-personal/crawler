@@ -48,10 +48,6 @@ export const lightTheme = createMuiTheme({
         color: 'white'
       }
     },
-    MuiTypography: {
-      root: {
-      }
-    },
     MuiExpansionPanel: {
       root: { 
         backgroundColor: 'steelblue',
@@ -62,16 +58,50 @@ export const lightTheme = createMuiTheme({
     },
     MuiDrawer: {
       root: {
+        backgroundColor: 'white'
+      }
+    },
+    MuiPaper: {
+      root: {
+        backgroundColor: 'white'
       }
     },
     MuiListItemText: {
       primary: {
-        fontSize: '0.6em',
-        color: 'white'
+        fontSize: '1em',
+        color: 'black'
       },
       secondary: {
         fontSize: '1.2em',
         color: 'yellow'
+      }
+    },
+    MuiListSubheader: {
+      root: {
+        color: 'gray'
+      }
+    },
+    MuiAppBar: {
+      root: {
+        backgroundColor: '#3f51b5'
+      }
+    },
+    MuiTableCell: {
+      head: {
+        color: 'black'
+      },
+      body: {
+        color: 'black'
+      }
+    },
+    MuiAccordionSummary: {
+      content: {
+        color: 'black'
+      }
+    },
+    MuiIconButton: {
+      root: {
+        color: 'black'
       }
     }
   }

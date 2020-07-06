@@ -24,13 +24,13 @@ export const darkTheme = createMuiTheme({
     },
     MuiContainer: {
       root: {
-        backgroundColor: 'darkslateblue',
+        backgroundColor: '#493430',
       }
     },
     MuiCssBaseline: {
       '@global': {
         body: {
-          backgroundColor: 'darkslateblue'
+          backgroundColor: '#493430'
         },
         h5: {
           fontcolor: 'white',
@@ -48,10 +48,6 @@ export const darkTheme = createMuiTheme({
         color: 'white'
       }
     },
-    MuiTypography: {
-      root: {
-      }
-    },
     MuiExpansionPanel: {
       root: { 
         backgroundColor: 'steelblue',
@@ -62,16 +58,50 @@ export const darkTheme = createMuiTheme({
     },
     MuiDrawer: {
       root: {
+        backgroundColor: '#4B170B'
+      }
+    },
+    MuiPaper: {
+      root: {
+        backgroundColor: '#4B170B'
       }
     },
     MuiListItemText: {
       primary: {
-        fontSize: '0.6em',
+        fontSize: '1em',
         color: 'white'
       },
       secondary: {
         fontSize: '1.2em',
         color: 'yellow'
+      }
+    },
+    MuiListSubheader: {
+      root: {
+        color: 'yellow'
+      }
+    },
+    MuiAppBar: {
+      root: {
+        backgroundColor: '#3f51b5'
+      }
+    },
+    MuiTableCell: {
+      head: {
+        color: 'white'
+      },
+      body: {
+        color: 'white'
+      }
+    },
+    MuiAccordionSummary: {
+      content: {
+        color: 'white'
+      }
+    },
+    MuiIconButton: {
+      root: {
+        color: 'white'
       }
     }
   }
