@@ -30,6 +30,10 @@ import styledVariables from './styledVariables'
    border-radius: 10px;
  }`
 
+ export const CustomScrollBar = styled.div`
+  ${customScrollBar}
+ `
+
  export const CustomLeftPanelMinFrame = styled.div`
   width: 100%;
   height: 100vh;
