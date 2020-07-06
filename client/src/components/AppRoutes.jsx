@@ -4,16 +4,11 @@ import { createBrowserHistory } from 'history'
 import { requireAuth, useLayout, useLocalization, makeSuspenseComponent, useMultiThemes } from 'root/customMiddleware'
 import appRoutesPath from 'root/appRoutes'
 import HeaderComponent from 'root/components/layouts/header'
-import CVHeader from 'root/components/layouts/cvHeader'
 
 // load containers with react lazy to split code.
 const HomeContainer = React.lazy(() => import('root/containers/home'))
 const LoginContainer = React.lazy(() => import('root/containers/login'))
 const RegisterContainer = React.lazy(() => import('root/containers/register'))
-const VietMapContainer = React.lazy(() => import('root/containers/vietmap'))
-const HistoricalMapsContainer = React.lazy(() => import('root/containers/historicalMaps'))
-const AboutMeContainer = React.lazy(() => import('root/containers/cv'))
-const AddCelebrityContainer = React.lazy(() => import('root/containers/historicalMaps/addCelebrity'))
 
 const publicRoute = [
   {
@@ -33,40 +28,10 @@ const publicRoute = [
     component: makeSuspenseComponent(RegisterContainer),
     isExact: false,
     layout: {}
-  },
-  {
-    path: appRoutesPath.vietmap,
-    component: makeSuspenseComponent(VietMapContainer),
-    isExact: false,
-    layout: {}
-  },
-  {
-    path: appRoutesPath.historicalMaps,
-    component: makeSuspenseComponent(HistoricalMapsContainer),
-    isExact: false,
-    layout: { header: HeaderComponent }
-  },
-  {
-    path: appRoutesPath.cv,
-    component: makeSuspenseComponent(AboutMeContainer),
-    isExact: false,
-    layout: { header: CVHeader }
-  },
-  {
-    path: appRoutesPath.createCelebrity,
-    component: makeSuspenseComponent(AddCelebrityContainer),
-    isExact: false,
-    layout: { header: HeaderComponent }
   }
 ]
 
 const privateRoute = [
-  {
-    path: appRoutesPath.createCelebrity,
-    component: () => <div>test</div>,
-    isExact: false,
-    layout: { header: HeaderComponent } //{ header: Header, footer: Footer }
-  }
 ]
 
 const renderPublicRoute = () => {
@@ -85,7 +50,7 @@ const history = createBrowserHistory()
 const Routes = () => (
   <Router history={history}>
     <Switch>
-      <Route path="/" exact component={useMultiThemes(useLocalization(useLayout({ header: CVHeader }, (makeSuspenseComponent(AboutMeContainer)))))} />
+      <Route path="/" exact component={useMultiThemes(useLocalization(useLayout({ header: HeaderComponent }, (makeSuspenseComponent(HomeContainer)))))} />
       {renderPublicRoute()}
       {renderPrivateRoute()}
       <Route component={() => { return (<div>not found</div>) }} />
