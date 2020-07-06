@@ -7,5 +7,6 @@ export default {
     height: 100vh;
     position: fixed;
     overflow: hidden;
-  `
+  `,
+  leftPanelMinWidth: 300
 }

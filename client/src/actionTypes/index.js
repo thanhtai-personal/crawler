@@ -1,7 +1,9 @@
 import { createAsyncTypes } from 'root/constants/utilities'
 import authenActionTypes from './auth'
+import crawlerAdminTypes from './crawlerAdmin'
 const actionType = {
-  ...authenActionTypes
+  ...authenActionTypes,
+  ...crawlerAdminTypes,
 }
 
 Object.keys(actionType).forEach((key) => {

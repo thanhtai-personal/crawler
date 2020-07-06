@@ -5,6 +5,50 @@
 import styled, { keyframes } from 'styled-components'
 import styledVariables from './styledVariables'
 
+/**
+ * 
+ For Crawler
+ */
+
+ export const CustomBodyFrame = styled.div`
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+ `
+
+ const customScrollBar = `
+ overflow-y: auto;
+ ::-webkit-scrollbar-thumb {
+   background: steelblue;
+   border-radius: 10px;
+ }
+ ::-webkit-scrollbar {
+   width: 10px;
+ }
+ ::-webkit-scrollbar-track {
+   box-shadow: inset 0 0 5px grey;
+   border-radius: 10px;
+ }`
+
+ export const CustomLeftPanelMinFrame = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  ${customScrollBar}
+  direction: rtl;
+ `
+
+ export const CustomMiddlePanelMaxFrame = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  ${customScrollBar}
+`
+
+/**
+----------- For Crawler
+*/
+
 export const CenterStyled = styled.div`
   width: 100%;
   height: auto;
@@ -49,35 +93,13 @@ export const MarginForFixedBottomFrameStyled = styled.div`
   position: fixed;
   height: calc(100vh - ${styledVariables.bottomFixed + styledVariables.timeSliderHeight + styledVariables.menuHeight + 5}px);
   width: 97vw;
-  overflow-y: auto;
-  ::-webkit-scrollbar-thumb {
-    background: steelblue;
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 10px;
-  }
+  ${customScrollBar}
 `
 
 export const CustomScrollBarStyled = styled.div`
   width: 100vw;
   height: 100vh;
-  overflow-y: scroll;
-  ::-webkit-scrollbar-thumb {
-    background: steelblue;
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 10px;
-  }
+  ${customScrollBar}
 `
 
 export const OpacityStyled = styled.div`

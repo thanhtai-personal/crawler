@@ -23,32 +23,7 @@
     "light": "Light",
     "dark": "Dark"
   },
-  "vietMapContainer": {
-    "loadingMap": "loading map..."
-  },
-  "historicalMapsContainer": {
-    "loadingMap": "loading map..."
-  },
-  "CVContainer": {
-    "service": {},
-    "slider": {},
-    "portfolio": {
-      "experiences": "EXPERIENCES",
-      "skills": "SKILLS"
-    },
-    "contact": {
-      "contact": "CONTACT",
-      "birthday": "Birthday",
-      "address": "Address",
-      "phone": "Phone",
-      "getMyCV": "Get my CV"
-    },
-    "projects": {
-      "projects": "PROJECTS"
-    },
-    "hobbies": {
-      "hobbies": "HOBBIES",
-      "interests": "INTERESTS"
-    }
+  "crawlerAdmin": {
+    
   }
 }
