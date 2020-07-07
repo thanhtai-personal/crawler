@@ -51,7 +51,10 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: 'auto'
     },
     selection: {
-      color: 'white'
+      color: '#3f51b5',
+      backgroundColor: 'steelblue'
+    },
+    selectOption: {
     }
   }),
 )
@@ -94,7 +97,7 @@ export function CustomizedSelects(props: any) {
           className={classes.selection}
         >
           {options.map((opt: any, index: number) => (
-            <option key={`${opt.key}-${index}`} value={opt.value}>{opt.text}</option>
+            <option key={`${opt.key}-${index}`} value={opt.value} className={classes.selectOption}>{opt.text}</option>
           ))}
         </NativeSelect>
       </FormControl>
