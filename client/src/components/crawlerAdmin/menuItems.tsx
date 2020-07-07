@@ -30,8 +30,8 @@ const mainListItems = [
     icon: <PeopleIcon />
   },
   {
-    key: 'reports',
-    text: 'Reports',
+    key: ContentKeyEnum.crawling,
+    text: 'Crawling',
     icon: <BarChartIcon />
   },
   {

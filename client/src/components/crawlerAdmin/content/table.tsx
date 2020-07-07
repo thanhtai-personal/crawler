@@ -9,16 +9,17 @@ import { ButtonGroup, Button } from '@material-ui/core'
 import { CloudUpload as CloudUploadIcon } from '@material-ui/icons'
 
 // Generate Order Data
-function createData(id: number, name: string, author: string, date: string, status: string, lastChapter: number, lastUpdateUser: string) {
-  return { id, name, author, date, status, lastChapter, lastUpdateUser }
+function createData(id: number, name: string, author: string, date: string, status: string, lastChapter: number,
+  lastUpdateUser: string, linkedKey: string) {
+  return { id, name, author, date, status, lastChapter, linkedKey }
 }
 
 const rows = [
-  createData(0, 'Thái sơ', 'Cao Lâu Đại Hạ', '00:00:00 07/07/2020', 'Success', 1000, 'Tai Tran'),
-  createData(1, 'Tru tiên 2', 'Tiêu Đỉnh', '00:00:00 07/07/2020', 'Failed', 1000, 'Tai Tran'),
-  createData(2, 'Thế giới tu chân', 'Phương Tưởng', '00:00:00 07/07/2020', 'Pending', 1000, 'Tai Tran'),
-  createData(3, 'Cực võ', 'Ngoan Ngoãn', '00:00:00 07/07/2020', 'Success', 1000, 'Tai Tran'),
-  createData(4, 'Vạn cổ thần đế', 'Phi Thiên Ngư', '00:00:00 07/07/2020', 'Success', 1000, 'Tai Tran'),
+  createData(0, 'Thái sơ', 'Cao Lâu Đại Hạ', '00:00:00 07/07/2020', 'Success', 1000, 'Tai Tran', 'thai_so'),
+  createData(1, 'Tru tiên 2', 'Tiêu Đỉnh', '00:00:00 07/07/2020', 'Failed', 1000, 'Tai Tran', 'tru_tien_2'),
+  createData(2, 'Thế giới tu chân', 'Phương Tưởng', '00:00:00 07/07/2020', 'Pending', 1000, 'Tai Tran', 'the_gioi_tu_chan'),
+  createData(3, 'Cực võ', 'Ngoan Ngoãn', '00:00:00 07/07/2020', 'Success', 1000, 'Tai Tran', 'cuc_vo'),
+  createData(4, 'Vạn cổ thần đế', 'Phi Thiên Ngư', '00:00:00 07/07/2020', 'Success', 1000, 'Tai Tran', 'van_co_than_de'),
 ]
 
 const cols = [{
@@ -65,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const CustomTable = (props: any) => {
-  const { text } = props
+  const { text, isCrawlingAll, crawlingSingle, isCrawlingSingleObj = {}, siteKey } = props
   const classes = useStyles()
   return (
     <Table size='small' className={classes.rootTable}>
@@ -87,8 +88,12 @@ const CustomTable = (props: any) => {
             <ButtonGroup className={classes.buttonGroup} size='small' aria-label='small outlined button group'>
                 <Button
                   endIcon={<CloudUploadIcon />}
-                  onClick={(e: any) => { e.stopPropagation() }}
+                  onClick={(e: any) => {
+                    e.stopPropagation()
+                    crawlingSingle &&  typeof crawlingSingle === 'function' && crawlingSingle(siteKey, row.linkedKey)
+                  }}
                   className={classes.button}
+                  disabled={isCrawlingAll || isCrawlingSingleObj[row.linkedKey]?.isCrawlingSingle}
                 >
                   {text?.crawlingData || 'Crawling'}
                 </Button>

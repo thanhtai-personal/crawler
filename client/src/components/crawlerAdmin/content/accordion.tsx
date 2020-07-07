@@ -5,7 +5,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails'
 import AccordionSummary from '@material-ui/core/AccordionSummary'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { Button, ButtonGroup, Grid } from '@material-ui/core'
+import { Button, ButtonGroup, Grid, Link } from '@material-ui/core'
 import { CloudUpload as CloudUploadIcon } from '@material-ui/icons'
 import { CustomizedSelects } from './selectionButton'
 import SearchInput from './searchInput'
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     accordionSumary: {
       borderTop: 'groove 2px steelblue',
-      backgroundColor: 'steelblue'
+      backgroundColor: 'steelblue !important'
     },
     buttonGroup: {
       float: 'right'
@@ -46,7 +46,9 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 export default function ControlledAccordions(props: any) {
-  const { text, label, value } = props
+  const { text, label, value, url, isCrawlingAll, siteKey,
+    crawlingAll
+  } = props
   const classes = useStyles()
   const [expanded, setExpanded] = React.useState<boolean>(false)
 
@@ -66,16 +68,32 @@ export default function ControlledAccordions(props: any) {
           <Grid container spacing={3}>
             <Grid item xs={4} className={classes.accordGrid}>
               <Typography className={classes.heading}>
-                {`${text ? text[label] || label || 'Name' : label || 'Name'}: ${text ? text[value] || value || 'unnamed noval' : value || 'unnamed noval'}`}</Typography>
+                <Link component='button' href={url} target='_blank'
+                  onClick={(e: any) => {
+                    e.stopPropagation()
+                    window.open(url, '_blank')
+                  }}
+                >
+                  {`${
+                    text ? text[label] || label || 'Name' : label || 'Name'
+                    }: ${
+                    text ? text[value] || value || 'unnamed noval' : value || 'unnamed noval'}`
+                  }
+                </Link>
+              </Typography>
             </Grid>
             <Grid item xs={8} className={classes.accordGrid}>
-              {expanded && <ButtonGroup className={classes.buttonGroup}  aria-label='small outlined button group'>
+              {expanded && <ButtonGroup className={classes.buttonGroup} aria-label='small outlined button group'>
                 <SearchInput />
                 <CustomizedSelects />
                 <Button
                   endIcon={<CloudUploadIcon />}
-                  onClick={(e: any) => { e.stopPropagation() }}
+                  onClick={(e: any) => {
+                    e.stopPropagation()
+                    crawlingAll && typeof crawlingAll === 'function' && crawlingAll(siteKey)
+                  }}
                   className={classes.button}
+                  disabled={isCrawlingAll}
                 >
                   {text?.crawlingData || 'Crawling'}
                 </Button>

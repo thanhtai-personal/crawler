@@ -6,7 +6,8 @@ export const ListMenuEnum = {
 export const ContentKeyEnum = {
   dashBoard: 'DASHBOARD',
   noval: 'NOVAL',
-  user: 'USER'
+  user: 'USER',
+  crawling: 'CRAWLING'
 }
 
 export const SortingEnum = {

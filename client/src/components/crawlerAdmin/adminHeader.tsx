@@ -12,6 +12,7 @@ import CONSTANTS from 'root/constants/constants'
 import { Menu as MenuIcon, CloudUpload as CloudUploadIcon } from '@material-ui/icons'
 import { ThemeContext } from 'root/customMiddleware/multiThemeProvider'
 import { ContentKeyEnum } from './enum'
+import { crawlingAll } from 'root/actions/crawlerAdmin'
 
 const { themeEnum } = CONSTANTS
 
@@ -56,7 +57,9 @@ const AdminTopBar = (props: any) => {
 
   const classes = useStyles()
 
-  const { open, setOpen, text, contentKey } = props
+  const { open, setOpen, text, contentKey, isCrawlingAll,
+    crawlingAll
+  } = props
   const handleDrawerOpen = () => {
     setOpen(true)
   }
@@ -87,10 +90,14 @@ const AdminTopBar = (props: any) => {
           {text?.crawlerData || 'Crawler data'}
         </Typography>
         <Typography component='div' className={classes.buttonGroupTypo}>
-          {contentKey === ContentKeyEnum.noval && <ButtonGroup className={classes.buttonGroup} size='small' aria-label='small outlined button group'>
+          {contentKey === ContentKeyEnum.crawling && <ButtonGroup className={classes.buttonGroup} size='small' aria-label='small outlined button group'>
             <Button
               endIcon={<CloudUploadIcon />}
-              onClick={(e: any) => { e.stopPropagation() }}
+              onClick={(e: any) => { 
+                e.stopPropagation()
+                crawlingAll && typeof crawlingAll === 'function' && crawlingAll()
+              }}
+              disabled={isCrawlingAll}
             >
               {text?.crawlingAll || 'Crawling all'}
             </Button>
@@ -111,11 +118,12 @@ const AdminTopBar = (props: any) => {
 }
 
 const mapStateToProps = (rootState: any) => ({
-  contentKey: rootState.crawlerAdmin?.contentKey
+  contentKey: rootState.crawlerAdmin?.contentKey,
+  isCrawlingAll: rootState.crawlerAdmin?.isCrawlingAll
 })
 
 const mapDispatch = {
-
+  crawlingAll
 }
 
 export default connect(mapStateToProps, mapDispatch)(AdminTopBar)

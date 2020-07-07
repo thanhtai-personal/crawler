@@ -59,7 +59,7 @@ const MainContent = (props: any) => {
   switch (contentKey) {
     case ContentKeyEnum.dashBoard:
       break
-    case ContentKeyEnum.noval:
+    case ContentKeyEnum.crawling:
       contentElement = (
         <Container maxWidth='lg' className={classes.container}>
           {testNovals.map((noval, index) => (
@@ -71,6 +71,7 @@ const MainContent = (props: any) => {
       break
     case ContentKeyEnum.user:
       break
+    case ContentKeyEnum.noval:
     default:
       break
   }

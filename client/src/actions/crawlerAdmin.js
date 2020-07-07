@@ -6,3 +6,18 @@ export const updateContentKey = (contentKey) => {
     contentKey
   }
 }
+
+export const crawlingAll = (site) => {
+  return {
+    type: actionType.CRAWLING_ALL.PENDING,
+    site
+  }
+}
+
+export const crawlingSingle = (site, name) => {
+  return {
+    type: actionType.CRAWLING_SINGLE.PENDING,
+    site,
+    name
+  }
+}

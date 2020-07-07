@@ -1,6 +1,7 @@
 import devConfig from './devConfig'
 import prdConfig from './prodConfig'
 import authApi from './auth'
+import crawlerApi from './crawler'
 import axios from 'axios'
 
 let config = devConfig
@@ -23,5 +24,6 @@ const makeApiService = (apiObject) => {
 //yield apiSercive.auth.login(data)
 
 export default {
-  auth: makeApiService(authApi)
+  auth: makeApiService(authApi),
+  crawler: makeApiService(crawlerApi)
 }

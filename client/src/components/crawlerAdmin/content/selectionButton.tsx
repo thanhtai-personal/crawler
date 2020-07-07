@@ -4,7 +4,6 @@ import FormControl from '@material-ui/core/FormControl'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import InputBase from '@material-ui/core/InputBase'
 import { SortingEnum } from './../enum'
-import { Typography } from '@material-ui/core'
 
 const BootstrapInput = withStyles((theme: Theme) =>
   createStyles({
@@ -51,8 +50,8 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: 'auto'
     },
     selection: {
-      color: '#3f51b5',
-      backgroundColor: 'steelblue'
+      // color: '#3f51b5',
+      // backgroundColor: 'steelblue'
     },
     selectOption: {
     }
@@ -79,7 +78,7 @@ const sortOptions = [
 ]
 
 export function CustomizedSelects(props: any) {
-  const { options = sortOptions, text, onChange, id } = props
+  const { options = sortOptions, onChange, id } = props
   const classes = useStyles()
   const [value, setValue] = React.useState(options[0].value)
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
