@@ -11,23 +11,23 @@ import BarChartIcon from '@material-ui/icons/BarChart'
 import LayersIcon from '@material-ui/icons/Layers'
 import AssignmentIcon from '@material-ui/icons/Assignment'
 import List from '@material-ui/core/List'
-import { ListMenuEnum } from './enum'
+import { ListMenuEnum, ContentKeyEnum } from './enum'
 
 const mainListItems = [
   {
-    key: 'dashBoard',
+    key: ContentKeyEnum.dashBoard,
     text: 'Dashboard',
     icon: <DashboardIcon />
   },
   {
-    key: 'user',
-    text: 'Users',
-    icon: <PeopleIcon />
+    key: ContentKeyEnum.noval,
+    text: 'Novals',
+    icon: <ShoppingCartIcon />
   },
   {
-    key: 'orders',
-    text: 'Orders',
-    icon: <ShoppingCartIcon />
+    key: ContentKeyEnum.user,
+    text: 'Users',
+    icon: <PeopleIcon />
   },
   {
     key: 'reports',
@@ -60,22 +60,27 @@ const secondaryListItems = [
 ]
 
 const MenuItems = (props: any) => {
-  const { itemType, text, subHeaderText = 'Saved reports', items } = props
+  const { itemType, text, subHeaderText = 'Saved reports', items,
+    updateContentKey
+  } = props
   let menuItems = mainListItems
   if (itemType === ListMenuEnum.secondary) {
     menuItems = secondaryListItems
   }
   if (items) menuItems = items
+
   return (
     <List>
-      {itemType === ListMenuEnum.secondary && <ListSubheader inset>{text? text[subHeaderText] : subHeaderText}</ListSubheader>}
+      {itemType === ListMenuEnum.secondary && <ListSubheader inset>{text ? text[subHeaderText] : subHeaderText}</ListSubheader>}
       {(menuItems.map((item, index) => (
-        <ListItem button key={`${item.key}-${index}`}>
-        <ListItemIcon>
-          {item.icon}
-        </ListItemIcon>
-        <ListItemText primary={text ? text[item.key] : item.text} />
-      </ListItem>
+        <ListItem button key={`${item.key}-${index}`} onClick={(e: any) => {
+          updateContentKey && typeof updateContentKey === 'function' && updateContentKey(item.key)
+        }}>
+          <ListItemIcon>
+            {item.icon}
+          </ListItemIcon>
+          <ListItemText primary={text ? text[item.key] : item.text} />
+        </ListItem>
       )))}
     </List>
   )

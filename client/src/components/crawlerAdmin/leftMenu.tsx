@@ -9,6 +9,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import MenuItems from './menuItems'
 import { Typography } from '@material-ui/core'
 import { ListMenuEnum } from './enum'
+import { updateContentKey } from 'root/actions/crawlerAdmin'
 
 const drawerWidth = 240
 
@@ -50,7 +51,9 @@ const LeftMenu = (props: any) => {
 
   const classes = useStyles()
 
-  const { open, setOpen, text } = props
+  const { open, setOpen, text,
+    updateContentKey
+  } = props
 
   const handleDrawerClose = () => {
     setOpen(false)
@@ -71,11 +74,18 @@ const LeftMenu = (props: any) => {
         </IconButton>
       </div>
       <Divider />
-      <MenuItems itemType={ListMenuEnum.first}/>
+      <MenuItems itemType={ListMenuEnum.first} updateContentKey={updateContentKey}/>
       <Divider />
-      <MenuItems itemType={ListMenuEnum.secondary}/>
+      <MenuItems itemType={ListMenuEnum.secondary} updateContentKey={updateContentKey}/>
     </Drawer>
   )
 }
 
-export default connect()(LeftMenu)
+const mapStateToProps = (rootState: any) => ({
+})
+
+const mapProps = {
+  updateContentKey
+}
+
+export default connect(mapStateToProps, mapProps)(LeftMenu)

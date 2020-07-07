@@ -1,2 +1,3 @@
 export default {
+  UPDATE_CONTENT_KEY: 'UPDATE_CONTENT_KEY'
 }
