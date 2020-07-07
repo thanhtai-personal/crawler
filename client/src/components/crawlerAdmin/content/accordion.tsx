@@ -1,10 +1,12 @@
-import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import React from 'react'
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
+import Accordion from '@material-ui/core/Accordion'
+import AccordionDetails from '@material-ui/core/AccordionDetails'
+import AccordionSummary from '@material-ui/core/AccordionSummary'
+import Typography from '@material-ui/core/Typography'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import { Button, ButtonGroup, Grid } from '@material-ui/core'
+import { CloudUpload as CloudUploadIcon } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,36 +22,56 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: theme.typography.pxToRem(15)
     },
     accordionSumary: {
-      borderTop: 'groove 2px steelblue'
+      borderTop: 'groove 2px steelblue',
+      backgroundColor: 'steelblue'
+    },
+    buttonGroup: {
+      float: 'right'
     }
   }),
-);
+)
 
 export default function ControlledAccordions(props: any) {
   const { text, label, value } = props
-  const classes = useStyles();
-  const [expanded, setExpanded] = React.useState<string | false>(false);
+  const classes = useStyles()
+  const [expanded, setExpanded] = React.useState<boolean>(false)
 
-  const handleChange = (panel: string) => (event: React.ChangeEvent<{}>, isExpanded: boolean) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  const handleChange = (panel: boolean) => (event: React.ChangeEvent<{}>, isExpanded: boolean) => {
+    setExpanded(isExpanded ? panel : false)
+  }
 
   return (
     <div className={classes.root}>
-      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+      <Accordion expanded={expanded} onChange={handleChange(!expanded)}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls='panel1bh-content'
           id='panel1bh-header'
           className={classes.accordionSumary}
         >
-          <Typography className={classes.heading}>{text? text[label] || label || 'Name' : label || 'Name'}</Typography>
-          <Typography className={classes.secondaryHeading}>{ text? text[value] || value || 'unnamed noval' : value || 'unnamed noval'}</Typography>
+          <Grid container spacing={3}>
+            <Grid item xs={3}>
+              <Typography className={classes.heading}>{text ? text[label] || label || 'Name' : label || 'Name'}</Typography>
+            </Grid>
+            <Grid item xs={3}>
+              <Typography className={classes.secondaryHeading}>{text ? text[value] || value || 'unnamed noval' : value || 'unnamed noval'}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              {expanded && <ButtonGroup className={classes.buttonGroup} size='small' aria-label='small outlined button group'>
+                <Button
+                  endIcon={<CloudUploadIcon />}
+                  onClick={(e: any) => { e.stopPropagation() }}
+                >
+                  {text?.crawlingData || 'Crawling'}
+                </Button>
+              </ButtonGroup>}
+            </Grid>
+          </Grid>
         </AccordionSummary>
         <AccordionDetails>
           {props.children}
         </AccordionDetails>
       </Accordion>
     </div>
-  );
+  )
 }

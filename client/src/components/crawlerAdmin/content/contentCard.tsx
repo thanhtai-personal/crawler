@@ -8,11 +8,11 @@ import CustomTable from './table'
 // }))
 
 const ContentCard = (props: any) => {
-  const { data } = props
+  const { data, text } = props
   // const classes = useStyles()
 
   return (
-    <ControlledAccordions label={'Name'} value={data?.name}>
+    <ControlledAccordions label={text?.site || 'Site'} value={data?.name}>
       <CustomTable />
     </ControlledAccordions>
   )

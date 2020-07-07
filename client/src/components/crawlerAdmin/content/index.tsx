@@ -34,20 +34,21 @@ const useStyles = makeStyles((theme) => ({
 
 const testNovals = [
   {
-    key: 'test1',
-    name: 'test1'
+    key: 'truyencv',
+    name: 'Truyện CV',
+    url: 'https://truyencv.com/'
   }, {
-    key: 'test2',
-    name: 'test2'
+    key: 'tangthuvien',
+    name: 'Tàng thư viện',
+    url: 'https://truyen.tangthuvien.vn/'
   }, {
-    key: 'test3',
-    name: 'test3'
+    key: 'truyenyy',
+    name: 'Truyện YY',
+    url: 'https://truyenyy.com/'
   }, {
-    key: 'test4',
-    name: 'test4'
-  }, {
-    key: 'test5',
-    name: 'test5'
+    key: 'truyencuatui',
+    name: 'Truyện của tui',
+    url: 'https://truyencuatui.net/'
   }
 ]
 

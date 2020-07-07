@@ -5,11 +5,13 @@ import { makeStyles } from '@material-ui/core/styles'
 import {
   AppBar, Grid,
   Toolbar, Typography,
-  IconButton, Switch
+  IconButton, Switch,
+  ButtonGroup, Button
 } from '@material-ui/core'
 import CONSTANTS from 'root/constants/constants'
-import MenuIcon from '@material-ui/icons/Menu'
+import { Menu as MenuIcon, CloudUpload as CloudUploadIcon } from '@material-ui/icons'
 import { ThemeContext } from 'root/customMiddleware/multiThemeProvider'
+import { ContentKeyEnum } from './enum'
 
 const { themeEnum } = CONSTANTS
 
@@ -42,6 +44,11 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+  },
+  buttonGroup: {
+  },
+  buttonGroupTypo: {
+    marginRight: theme.spacing(4)
   }
 }))
 
@@ -49,7 +56,7 @@ const AdminTopBar = (props: any) => {
 
   const classes = useStyles()
 
-  const { open, setOpen, text } = props
+  const { open, setOpen, text, contentKey } = props
   const handleDrawerOpen = () => {
     setOpen(true)
   }
@@ -78,7 +85,17 @@ const AdminTopBar = (props: any) => {
         </IconButton>
         <Typography component='h1' variant='h6' color='inherit' noWrap className={classes.title}>
           {text?.crawlerData || 'Crawler data'}
-          </Typography>
+        </Typography>
+        <Typography component='div' className={classes.buttonGroupTypo}>
+          {contentKey === ContentKeyEnum.noval && <ButtonGroup className={classes.buttonGroup} size='small' aria-label='small outlined button group'>
+            <Button
+              endIcon={<CloudUploadIcon />}
+              onClick={(e: any) => { e.stopPropagation() }}
+            >
+              {text?.crawlingAll || 'Crawling all'}
+            </Button>
+          </ButtonGroup>}
+        </Typography>
         <Typography component='div'>
           <Grid component='label' container alignItems='center' spacing={1}>
             <Grid item>{text?.light || 'Light'}</Grid>
@@ -93,4 +110,12 @@ const AdminTopBar = (props: any) => {
   )
 }
 
-export default connect()(AdminTopBar)
+const mapStateToProps = (rootState: any) => ({
+  contentKey: rootState.crawlerAdmin?.contentKey
+})
+
+const mapDispatch = {
+
+}
+
+export default connect(mapStateToProps, mapDispatch)(AdminTopBar)
