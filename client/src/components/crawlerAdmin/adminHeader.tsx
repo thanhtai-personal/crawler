@@ -2,7 +2,9 @@ import React, { useContext } from 'react'
 import { connect } from 'react-redux'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-import { AppBar, Grid, Toolbar, Typography,
+import {
+  AppBar, Grid,
+  Toolbar, Typography,
   IconButton, Switch
 } from '@material-ui/core'
 import CONSTANTS from 'root/constants/constants'
@@ -15,7 +17,7 @@ const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
+    paddingRight: 24,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -47,7 +49,7 @@ const AdminTopBar = (props: any) => {
 
   const classes = useStyles()
 
-  const { open, setOpen } = props
+  const { open, setOpen, text } = props
   const handleDrawerOpen = () => {
     setOpen(true)
   }
@@ -75,15 +77,15 @@ const AdminTopBar = (props: any) => {
           <MenuIcon />
         </IconButton>
         <Typography component='h1' variant='h6' color='inherit' noWrap className={classes.title}>
-          Crawler data
+          {text?.crawlerData || 'Crawler data'}
           </Typography>
         <Typography component='div'>
           <Grid component='label' container alignItems='center' spacing={1}>
-            <Grid item>Light</Grid>
+            <Grid item>{text?.light || 'Light'}</Grid>
             <Grid item>
               <Switch defaultChecked={false} onChange={onChangeTheme} name='checkedC' />
             </Grid>
-            <Grid item>Dark</Grid>
+            <Grid item>{text?.dark || 'Dark'}</Grid>
           </Grid>
         </Typography>
       </Toolbar>

@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
-import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import { mainListItems, secondaryListItems } from './menuItems'
+import MenuItems from './menuItems'
 import { Typography } from '@material-ui/core'
+import { ListMenuEnum } from './enum'
 
 const drawerWidth = 240
 
@@ -18,7 +18,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '0 8px',
+    backgroundColor: 'steelblue',
     ...theme.mixins.toolbar,
+  },
+  toolbarIconText: {
+    color: 'yellow',
   },
   drawerPaper: {
     position: 'relative',
@@ -46,7 +50,7 @@ const LeftMenu = (props: any) => {
 
   const classes = useStyles()
 
-  const { open, setOpen } = props
+  const { open, setOpen, text } = props
 
   const handleDrawerClose = () => {
     setOpen(false)
@@ -61,15 +65,15 @@ const LeftMenu = (props: any) => {
       open={open}
     >
       <div className={classes.toolbarIcon}>
-        <Typography variant={'h5'}>ADMIN MENU</Typography>
+        <Typography className={classes.toolbarIconText} variant={'h5'}>{text?.adminMenu || 'ADMIN MENU'}</Typography>
         <IconButton onClick={handleDrawerClose}>
           <ChevronLeftIcon />
         </IconButton>
       </div>
       <Divider />
-      <List>{mainListItems}</List>
+      <MenuItems itemType={ListMenuEnum.first}/>
       <Divider />
-      <List>{secondaryListItems}</List>
+      <MenuItems itemType={ListMenuEnum.secondary}/>
     </Drawer>
   )
 }

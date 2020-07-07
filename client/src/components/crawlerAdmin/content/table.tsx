@@ -1,12 +1,10 @@
 import React from 'react'
-import Link from '@material-ui/core/Link'
 import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
-import { Typography } from '@material-ui/core'
 
 // Generate Order Data
 function createData(id: number, date: string, name: string, shipTo: string, paymentMethod: string, amount: number) {
@@ -21,43 +19,61 @@ const rows = [
   createData(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
 ]
 
-function preventDefault(event: any) {
-  event.preventDefault()
-}
+const cols = [{
+  key: 'date',
+  text: 'Date'
+},
+{
+  key: 'name',
+  text: 'Name'
+},
+{
+  key: 'shipTo',
+  text: 'Ship To'
+},
+{
+  key: 'paymentMethod',
+  text: 'Payment Method'
+},
+{
+  key: 'saleAmount',
+  text: 'Sale Amount'
+}]
+
+// function preventDefault(event: any) {
+//   event.preventDefault()
+// }
 
 const useStyles = makeStyles((theme) => ({
-  seeMore: {
-    marginTop: theme.spacing(3),
+  rootTable: {
+    marginBottom: theme.spacing(4)
   },
 }))
 
-const CustomTable = () => {
+const CustomTable = (props: any) => {
+  const { text } = props
   const classes = useStyles()
   return (
-    <React.Fragment>
-      <Table size='small'>
-        <TableHead>
-          <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Ship To</TableCell>
-            <TableCell>Payment Method</TableCell>
-            <TableCell align='right'>Sale Amount</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row: any) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align='right'>{row.amount}</TableCell>
-            </TableRow>
+    <Table size='small' className={classes.rootTable}>
+      <TableHead>
+        <TableRow>
+          {cols.map((col, index) => (
+            <TableCell align={index === cols.length - 1 ? 'right' : 'left'} key={`${col.key}-${index}`}>{text? text[col.key] || col.text : col.text}</TableCell>
           ))}
-        </TableBody>
-      </Table>
-    </React.Fragment>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {rows.map((row: any) => (
+          <TableRow key={row.id}>
+            <TableCell>{row.date}</TableCell>
+            <TableCell>{row.name}</TableCell>
+            <TableCell>{row.shipTo}</TableCell>
+            <TableCell>{row.paymentMethod}</TableCell>
+            <TableCell align='right'>{row.amount}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
   )
 }
 

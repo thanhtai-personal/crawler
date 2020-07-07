@@ -50,7 +50,7 @@ const renderPublicRoute = () => {
 
 const renderPrivateRoute = () => {
   return privateRoute.map((route) =>
-    <Route key={route.path} path={route.path} exact={route.isExact} component={useMultiThemes(useLocalization(requireAuth(route.layout ? useLayout(route.layout, route.component) : route.component)))} />
+    <Route key={route.path} path={route.path} exact={route.isExact} component={requireAuth(useMultiThemes(useLocalization(route.layout ? useLayout(route.layout, route.component) : route.component)))} />
   )
 }
 

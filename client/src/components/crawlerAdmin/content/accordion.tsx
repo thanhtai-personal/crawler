@@ -9,7 +9,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '100%',
+      width: '100%'
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),
@@ -19,10 +19,14 @@ const useStyles = makeStyles((theme: Theme) =>
     secondaryHeading: {
       fontSize: theme.typography.pxToRem(15)
     },
+    accordionSumary: {
+      borderTop: 'groove 2px steelblue'
+    }
   }),
 );
 
 export default function ControlledAccordions(props: any) {
+  const { text, label, value } = props
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
@@ -35,11 +39,12 @@ export default function ControlledAccordions(props: any) {
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
+          aria-controls='panel1bh-content'
+          id='panel1bh-header'
+          className={classes.accordionSumary}
         >
-          <Typography className={classes.heading}>Name</Typography>
-          <Typography className={classes.secondaryHeading}>Noval xxxx</Typography>
+          <Typography className={classes.heading}>{text? text[label] || label || 'Name' : label || 'Name'}</Typography>
+          <Typography className={classes.secondaryHeading}>{ text? text[value] || value || 'unnamed noval' : value || 'unnamed noval'}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           {props.children}

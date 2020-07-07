@@ -7,16 +7,48 @@ import ContentCard from './contentCard'
 
 const useStyles = makeStyles((theme) => ({
   appBarSpacer: theme.mixins.toolbar,
+  '@global': {
+    '*::-webkit-scrollbar-thumb': {
+      background: 'steelblue',
+      borderRadius: '10px'
+    },
+    '*::-webkit-scrollbar': {
+      width: '10px'
+    },
+    '*::-webkit-scrollbar-track': {
+      boxShadow: 'inset 0 0 5px grey',
+      borderRadius: '10px'
+    },
+  },
   content: {
     flexGrow: 1,
     height: '100vh',
-    overflow: 'auto',
+    overflowY: 'auto',
   },
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   }
 }))
+
+const testNovals = [
+  {
+    key: 'test1',
+    name: 'test1'
+  },{
+    key: 'test2',
+    name: 'test2'
+  },{
+    key: 'test3',
+    name: 'test3'
+  },{
+    key: 'test4',
+    name: 'test4'
+  },{
+    key: 'test5',
+    name: 'test5'
+  }
+]
 
 const MainContent = (props: any) => {
 
@@ -26,29 +58,11 @@ const MainContent = (props: any) => {
     <main className={classes.content}>
       <div className={classes.appBarSpacer} />
       <Container maxWidth='lg' className={classes.container}>
-        <Grid container spacing={3}>
-          <ContentCard />
+        {testNovals.map((noval, index) => (
+          <Grid container spacing={3} key={`${noval.key}-${index}`}>
+          <ContentCard data={noval}/>
         </Grid>
-      </Container>
-      <Container maxWidth='lg' className={classes.container}>
-        <Grid container spacing={3}>
-          <ContentCard />
-        </Grid>
-      </Container>
-      <Container maxWidth='lg' className={classes.container}>
-        <Grid container spacing={3}>
-          <ContentCard />
-        </Grid>
-      </Container>
-      <Container maxWidth='lg' className={classes.container}>
-        <Grid container spacing={3}>
-          <ContentCard />
-        </Grid>
-      </Container>
-      <Container maxWidth='lg' className={classes.container}>
-        <Grid container spacing={3}>
-          <ContentCard />
-        </Grid>
+        ))}
       </Container>
     </main>
   )
