@@ -49,6 +49,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     root: {
       margin: 'auto'
+    },
+    selection: {
+      color: 'white'
     }
   }),
 )
@@ -88,6 +91,7 @@ export function CustomizedSelects(props: any) {
           value={value}
           onChange={handleChange}
           input={<BootstrapInput />}
+          className={classes.selection}
         >
           {options.map((opt: any, index: number) => (
             <option key={`${opt.key}-${index}`} value={opt.value}>{opt.text}</option>

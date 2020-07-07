@@ -8,6 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { Button, ButtonGroup, Grid } from '@material-ui/core'
 import { CloudUpload as CloudUploadIcon } from '@material-ui/icons'
 import { CustomizedSelects } from './selectionButton'
+import SearchInput from './searchInput'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -63,15 +64,13 @@ export default function ControlledAccordions(props: any) {
           className={classes.accordionSumary}
         >
           <Grid container spacing={3}>
-            <Grid item xs={3} className={classes.accordGrid}>
-              <Typography className={classes.heading}>{text ? text[label] || label || 'Name' : label || 'Name'}</Typography>
+            <Grid item xs={4} className={classes.accordGrid}>
+              <Typography className={classes.heading}>
+                {`${text ? text[label] || label || 'Name' : label || 'Name'}: ${text ? text[value] || value || 'unnamed noval' : value || 'unnamed noval'}`}</Typography>
             </Grid>
-            <Grid item xs={3} className={classes.accordGrid}>
-              <Typography className={classes.secondaryHeading}>{text ? text[value] || value || 'unnamed noval' : value || 'unnamed noval'}</Typography>
-            </Grid>
-            <Grid item xs={6} className={classes.accordGrid}>
-              {expanded && <ButtonGroup className={classes.buttonGroup} size='small' aria-label='small outlined button group'>
-                <Typography className={classes.sortText}>{text?.sort || 'Sắp xếp: '}</Typography>
+            <Grid item xs={8} className={classes.accordGrid}>
+              {expanded && <ButtonGroup className={classes.buttonGroup}  aria-label='small outlined button group'>
+                <SearchInput />
                 <CustomizedSelects />
                 <Button
                   endIcon={<CloudUploadIcon />}
