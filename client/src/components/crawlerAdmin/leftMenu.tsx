@@ -51,7 +51,7 @@ const LeftMenu = (props: any) => {
 
   const classes = useStyles()
 
-  const { open, setOpen, text,
+  const { open, setOpen, text, contentKey,
     updateContentKey
   } = props
 
@@ -74,14 +74,15 @@ const LeftMenu = (props: any) => {
         </IconButton>
       </div>
       <Divider />
-      <MenuItems itemType={ListMenuEnum.first} updateContentKey={updateContentKey}/>
+      <MenuItems itemType={ListMenuEnum.first} updateContentKey={updateContentKey} contentKey={contentKey}/>
       <Divider />
-      <MenuItems itemType={ListMenuEnum.secondary} updateContentKey={updateContentKey}/>
+      <MenuItems itemType={ListMenuEnum.secondary} updateContentKey={updateContentKey} contentKey={contentKey}/>
     </Drawer>
   )
 }
 
 const mapStateToProps = (rootState: any) => ({
+  contentKey: rootState.crawlerAdmin?.contentKey
 })
 
 const mapProps = {

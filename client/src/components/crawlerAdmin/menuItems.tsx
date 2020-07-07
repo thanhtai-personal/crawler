@@ -60,7 +60,7 @@ const secondaryListItems = [
 ]
 
 const MenuItems = (props: any) => {
-  const { itemType, text, subHeaderText = 'Saved reports', items,
+  const { itemType, text, subHeaderText = 'Saved reports', items, contentKey,
     updateContentKey
   } = props
   let menuItems = mainListItems
@@ -75,7 +75,9 @@ const MenuItems = (props: any) => {
       {(menuItems.map((item, index) => (
         <ListItem button key={`${item.key}-${index}`} onClick={(e: any) => {
           updateContentKey && typeof updateContentKey === 'function' && updateContentKey(item.key)
-        }}>
+        }}
+          selected={item.key === contentKey}
+        >
           <ListItemIcon>
             {item.icon}
           </ListItemIcon>
