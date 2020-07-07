@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { Button, ButtonGroup, Grid } from '@material-ui/core'
 import { CloudUpload as CloudUploadIcon } from '@material-ui/icons'
+import { CustomizedSelects } from './selectionButton'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,6 +28,18 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     buttonGroup: {
       float: 'right'
+    },
+    button: {
+      marginRight: theme.spacing(1),
+      height: 'max-content',
+      margin: 'auto'
+    },
+    accordGrid: {
+      margin: 'auto'
+    },
+    sortText: {
+      display: 'block',
+      margin: 'auto'
     }
   }),
 )
@@ -50,17 +63,20 @@ export default function ControlledAccordions(props: any) {
           className={classes.accordionSumary}
         >
           <Grid container spacing={3}>
-            <Grid item xs={3}>
+            <Grid item xs={3} className={classes.accordGrid}>
               <Typography className={classes.heading}>{text ? text[label] || label || 'Name' : label || 'Name'}</Typography>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={3} className={classes.accordGrid}>
               <Typography className={classes.secondaryHeading}>{text ? text[value] || value || 'unnamed noval' : value || 'unnamed noval'}</Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={6} className={classes.accordGrid}>
               {expanded && <ButtonGroup className={classes.buttonGroup} size='small' aria-label='small outlined button group'>
+                <Typography className={classes.sortText}>{text?.sort || 'Sắp xếp: '}</Typography>
+                <CustomizedSelects />
                 <Button
                   endIcon={<CloudUploadIcon />}
                   onClick={(e: any) => { e.stopPropagation() }}
+                  className={classes.button}
                 >
                   {text?.crawlingData || 'Crawling'}
                 </Button>

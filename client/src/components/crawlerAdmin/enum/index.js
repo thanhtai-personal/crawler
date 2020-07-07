@@ -8,3 +8,9 @@ export const ContentKeyEnum = {
   noval: 'NOVAL',
   user: 'USER'
 }
+
+export const SortingEnum = {
+  name: 'name',
+  date: 'date',
+  status: 'status'
+}

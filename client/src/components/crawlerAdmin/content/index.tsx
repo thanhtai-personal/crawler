@@ -58,7 +58,7 @@ const MainContent = (props: any) => {
   let contentElement = <div></div>
   switch (contentKey) {
     case ContentKeyEnum.dashBoard:
-      break;
+      break
     case ContentKeyEnum.noval:
       contentElement = (
         <Container maxWidth='lg' className={classes.container}>
@@ -68,11 +68,11 @@ const MainContent = (props: any) => {
             </Grid>
           ))}
         </Container>)
-      break;
+      break
     case ContentKeyEnum.user:
-      break;
+      break
     default:
-      break;
+      break
   }
   return (
     <main className={classes.content}>

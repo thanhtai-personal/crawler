@@ -96,7 +96,8 @@ export const darkTheme = createMuiTheme({
     },
     MuiAccordionSummary: {
       content: {
-        color: 'white'
+        color: 'white',
+        margin: 'auto'
       }
     },
     MuiIconButton: {
