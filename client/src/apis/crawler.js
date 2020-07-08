@@ -1,9 +1,9 @@
 
-const crawling = {
+const crawlingAll = {
     method: 'post',
     url: 'crawler/start'
 }
 
 export default {
-    crawling
+    crawlingAll
 }

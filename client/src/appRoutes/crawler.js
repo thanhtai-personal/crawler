@@ -1,3 +1,3 @@
 export default {
-  crawlerAdmin: '/dashboard/crawler',
+  crawlerAdmin: '/dashboard',
 }
