@@ -5,7 +5,7 @@ import actionType from 'root/actionTypes'
 function* crawlingAll(data) {
   try {
     const dataResponse = yield apiService.crawler?.crawlingAll(data.site).then(response => response)
-    yield put({ type: actionType.CRAWLING_ALL.SUCCESS, payload: dataResponse });
+    yield put({ type: actionType.CRAWLING_ALL.SUCCESS, payload: dataResponse })
   } catch(error) {
     yield put({ type: actionType.CRAWLING_ALL.FAILED, payload: { error: error } })
   } 
@@ -15,7 +15,7 @@ function* crawlingSingle(data) {
   try {
     const dataResponse = yield apiService.crawler?.crawlingAll({
       site: data?.site,
-      name: data?.name
+      name: data?.name?.replace('_', '-')
     }).then(response => response)
     yield put({ type: actionType.CRAWLING_SINGLE.SUCCESS,
       payload: dataResponse,

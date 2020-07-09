@@ -14,6 +14,7 @@ function* login(data) {
 
 function* register(data) {
   try {
+    console.log('api instant', apiService);
     const dataResponse = yield apiService.auth?.register(data.data).then(response => response)
     window.localStorage.setItem('jwtToken', dataResponse?.token)
     yield put({ type: actionType.UPDATE_REGISTER_DATA.PENDING, payload: dataResponse });

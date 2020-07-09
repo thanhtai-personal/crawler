@@ -32,7 +32,7 @@ export default {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Credentials': true
+    // 'Access-Control-Allow-Credentials': true
   },
  
   // `params` are the URL parameters to be sent with the request
@@ -64,7 +64,7 @@ export default {
  
   // `withCredentials` indicates whether or not cross-site Access-Control requests
   // should be made using credentials
-  withCredentials: true, // default
+  // withCredentials: true, // default
  
   // `adapter` allows custom handling of requests which makes testing easier.
   // Return a promise and supply a valid response (see lib/adapters/README.md).

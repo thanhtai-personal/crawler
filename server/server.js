@@ -1,25 +1,35 @@
-const path = require('path');
+// const path = require('path');
 const logger = require('morgan');
+const cookieParser = require('cookie-parser');
 const express = require('express');
-const { sendResponse } = require('./app/helpers');
+const cors = require('cors');
 
-//import service
-const { fetchAuthorProfile } = require('./app/scotch');
-const crawlTruyenConvertService = require('./app/truyenconvert/index');
-//---------import service
+const routes = require('./routes');
+const { checkAuthenticate, errorHandler, handleNotFound } = require('./middleware');
 
 const app = express();
 const port = process.env.PORT || 3077;
 
 app.set('port', port);
+
+//middleware
+app.use(cors());
 app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(checkAuthenticate);
 
-//app routes
-app.use('/', express.static(path.resolve(__dirname, 'public')));
 
-app.get('/scotch/:author', (req, res, next) => {
-	const author = req.params.author;
-	sendResponse(res)(fetchAuthorProfile(author));
-});
+app.use('/api/auth', routes.authRoutes);
+app.use('/api/crawler', routes.crawlerRoutes);
+
+app.use(handleNotFound);
+app.use(errorHandler);
+
+
 //---------app routes
+
+
+
 app.listen(port, () => console.log(`App started on port ${port}.`));

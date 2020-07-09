@@ -4,18 +4,21 @@
     "description": "Simple app for scraping data",
     "author": "Tai Tran (tttgalaxy@gmail.com)",
     "scripts": {
-        "start": "node server.js",
-        "dev": "npm-run-all -p start dev:build",
-        "dev:build": "webpack --config ./webpack.config.js -w"
+        "start": "nodemon server.js"
     },
     "dependencies": {
         "axios": "^0.18.0",
         "bootstrap": "^4.0.0",
         "cheerio": "^1.0.0-rc.2",
-        "express": "^4.16.3",
+        "cookie-parser": "^1.4.5",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "http-errors": "^1.8.0",
         "jquery-slim": "^3.0.0",
+        "jsonwebtoken": "^8.5.1",
         "lodash": "^4.17.5",
-        "morgan": "^1.9.0"
+        "morgan": "^1.10.0",
+        "path": "^0.12.7"
     },
     "devDependencies": {
         "autoprefixer": "^8.2.0",
